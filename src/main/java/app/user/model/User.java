@@ -31,6 +31,15 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
+    private String firstName;
+
+    private String lastName;
+
+    private String profilePictureUrl;
+
+    @Column(nullable = false)
+    private boolean isActive;
+
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
