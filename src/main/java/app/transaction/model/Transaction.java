@@ -19,6 +19,9 @@ public class Transaction {
     private UUID id;
 
     @Column(nullable = false)
+    private String subject;
+
+    @Column(nullable = false)
     private String description;
 
     @Column(nullable = false)

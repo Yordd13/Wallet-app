@@ -21,11 +21,6 @@ body {
     gap: 2rem;
 }
 
-.title {
-    font-size: 3rem;
-    font-weight: bold;
-}
-
 .subtitle {
     color: #aaa;
     font-size: 1.2rem;
@@ -61,4 +56,10 @@ body {
 
 .btn-secondary:hover {
     border-color: white;
+}
+
+.logo {
+    margin: 0 auto -6rem;
+    height: 300px;
+    object-fit: contain;
 }
