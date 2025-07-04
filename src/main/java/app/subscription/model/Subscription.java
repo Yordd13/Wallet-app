@@ -1,11 +1,11 @@
 package app.subscription.model;
 
+import app.user.model.User;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @AllArgsConstructor
@@ -14,11 +14,8 @@ import java.util.UUID;
 @Getter
 @Builder
 public class Subscription {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
 
-    @Column(nullable = false)
+    @Id
     @Enumerated(EnumType.STRING)
     private SubscriptionType type;
 
@@ -31,5 +28,6 @@ public class Subscription {
     @Column(nullable = false)
     private BigDecimal price;
 
-    //TODO: add user
+    @OneToMany(mappedBy = "subscription")
+    private List<User> users;
 }

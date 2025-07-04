@@ -1,5 +1,6 @@
 package app.transaction.model;
 
+import app.user.model.User;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,5 +27,6 @@ public class Transaction {
     @Column(nullable = false)
     private LocalDateTime date;
 
-    //TODO: add userGiver and receiver
+    @ManyToOne
+    private User user;
 }

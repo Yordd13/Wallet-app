@@ -1,9 +1,13 @@
 package app.user.model;
 
+import app.subscription.model.Subscription;
+import app.transaction.model.Transaction;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -45,4 +49,10 @@ public class User {
 
     @Column(nullable = false)
     private LocalDateTime updatedAt;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    private List<Transaction> transactions = new ArrayList<>();
+
+    @ManyToOne
+    private Subscription subscription;
 }
