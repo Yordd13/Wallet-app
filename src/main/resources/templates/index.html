@@ -8,12 +8,14 @@
 </head>
 <body>
 <div class="container">
-    <img src="/images/logo.png" alt="My Wallet Logo" class="logo" />
+    <a th:href="@{/}">
+        <img src="/images/logo.png" alt="My Wallet Logo" class="logo" />
+    </a>
     <p class="subtitle">Manage your finances securely and efficiently</p>
 
     <div class="button-group">
-        <a href="/register" class="btn btn-primary">Register</a>
-        <a href="/login" class="btn btn-secondary">Login</a>
+        <a th:href="@{/register}" class="btn btn-primary">Register</a>
+        <a th:href="@{/login}" class="btn btn-secondary">Login</a>
     </div>
 </div>
 </body>

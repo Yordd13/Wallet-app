@@ -8,26 +8,33 @@
 </head>
 <body>
 <div class="container">
-  <img src="/images/logo.png" alt="My Wallet Logo" class="logo" />
+  <a th:href="@{/}">
+    <img src="/images/logo.png" alt="My Wallet Logo" class="logo" />
+  </a>
   <h1 class="title">Register</h1>
-  <form action="/register" method="POST">
+  <form th:action="@{/register}" th:method="POST" th:object="${newRegistrationRequest}">
     <div class="form-group">
       <label for="username">Username</label>
-      <input type="text" id="username" name="username" required />
+      <input type="text" id="username" name="username" th:field="*{username}" required />
+      <p class="alert-warning" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+      <p class="alert-warning" th:if="${usernameExistsExceptionMessage}" th:text="${usernameExistsExceptionMessage}"></p>
     </div>
 
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="email" id="email" name="email" required />
+      <input type="email" id="email" name="email" th:field="*{email}" required />
+      <p class="alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+      <p class="alert-warning" th:if="${emailExistsExceptionMessage}" th:text="${emailExistsExceptionMessage}"></p>
     </div>
 
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" id="password" name="password" required />
+      <input type="password" id="password" name="password" th:field="*{password}" required />
+      <p class="alert-warning" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
     </div>
 
     <button type="submit">Register</button>
-    <a href="/login" class="link">Already have an account? Login</a>
+    <a th:href="@{/login}" class="link">Already have an account? Login</a>
   </form>
 </div>
 </body>

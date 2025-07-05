@@ -8,7 +8,9 @@
 </head>
 <body>
 <div class="container">
-    <img src="/images/logo.png" alt="My Wallet Logo" class="logo" />
+    <a th:href="@{/}">
+        <img src="/images/logo.png" alt="My Wallet Logo" class="logo" />
+    </a>
     <h1 class="title">Login</h1>
     <form action="/login" method="POST">
         <div class="form-group">
@@ -22,7 +24,7 @@
         </div>
 
         <button type="submit">Login</button>
-        <a href="/register" class="link">Don't have an account? Register</a>
+        <a th:href="@{/register}" class="link">Don't have an account? Register</a>
     </form>
 </div>
 </body>

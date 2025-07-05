@@ -1,11 +1,12 @@
 package app.web;
 
 import app.user.service.UserService;
+import app.web.dto.NewRegistrationRequest;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -28,9 +29,21 @@ public class IndexController {
     public ModelAndView getRegisterPage(){
         ModelAndView modelAndView = new ModelAndView("register");
 
-        //TODO: make and add dto fot registration
+        modelAndView.addObject("newRegistrationRequest", new NewRegistrationRequest());
 
         return modelAndView;
+    }
+
+    @PostMapping("/register")
+    public String postRegisterPage(@Valid NewRegistrationRequest newRegistrationRequest, BindingResult bindingResult){
+
+        if(bindingResult.hasErrors()){
+            return "register";
+        }
+
+        userService.register(newRegistrationRequest);
+
+        return "redirect:/login";
     }
 
     @GetMapping("/login")
@@ -41,6 +54,12 @@ public class IndexController {
             modelAndView.addObject("errorMessage", "Incorrect email or password!");
         }
 
+        return modelAndView;
+    }
+
+    @GetMapping("/home")
+    public ModelAndView getHomePage(){
+        ModelAndView modelAndView = new ModelAndView("home");
         return modelAndView;
     }
 }

@@ -92,3 +92,13 @@ button:hover {
     object-fit: contain;
 }
 
+.alert-warning {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background-color: #331c1c;
+    color: #ff6b6b;
+    border: 1px solid #992222;
+    border-radius: 0.5rem;
+    font-size: 0.85rem;
+}
+

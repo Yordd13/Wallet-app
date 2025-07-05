@@ -24,7 +24,7 @@ public class WebMvcConfiguration {
                         .loginPage("/login")
                         .usernameParameter("username")
                         .passwordParameter("password")
- //                       .defaultSuccessUrl("/categories",true)
+                        .defaultSuccessUrl("/home",true)
                         .failureUrl("/login?error")
                         .permitAll()
                 )
