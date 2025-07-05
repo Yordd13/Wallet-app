@@ -12,7 +12,8 @@
         <img src="/images/logo.png" alt="My Wallet Logo" class="logo" />
     </a>
     <h1 class="title">Login</h1>
-    <form action="/login" method="POST">
+    <form th:action="@{/login}" th:method="POST">
+        <p class="alert-warning" th:if="${errorMessage}" th:text="${errorMessage}"></p>
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" required />
