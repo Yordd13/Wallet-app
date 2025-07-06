@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -20,14 +21,14 @@ public class Subscription {
     private SubscriptionType type;
 
     @Column(nullable = false)
-    private String perks;
-
-    @Column(nullable = false)
-    private String description;
-
-    @Column(nullable = false)
     private BigDecimal price;
 
-    @OneToMany(mappedBy = "subscription")
-    private List<User> users;
+    @Column(nullable = false)
+    private LocalDateTime startDateTime;
+
+    @Column(nullable = false)
+    private LocalDateTime endDateTime;
+
+    @OneToOne(mappedBy = "subscription")
+    private User user;
 }

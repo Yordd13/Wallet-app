@@ -5,6 +5,7 @@ import app.transaction.model.Transaction;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
+    @Column(nullable = false)
+    private BigDecimal balance;
+
     private String firstName;
 
     private String lastName;
@@ -53,6 +57,6 @@ public class User {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private List<Transaction> transactions = new ArrayList<>();
 
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Subscription subscription;
 }

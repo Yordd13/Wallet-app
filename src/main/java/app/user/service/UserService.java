@@ -1,5 +1,6 @@
 package app.user.service;
 
+import app.events.UserRegisteredEvent;
 import app.exception.DomainException;
 import app.exception.RegistrationException;
 import app.security.AuthenticationDetails;
@@ -10,12 +11,14 @@ import jakarta.transaction.Transactional;
 import app.user.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +29,13 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final ApplicationEventPublisher eventPublisher;
 
     @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, ApplicationEventPublisher eventPublisher) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.eventPublisher = eventPublisher;
     }
 
     @Transactional
@@ -60,9 +65,13 @@ public class UserService implements UserDetailsService {
                 .profilePictureUrl("https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png")
                 .createdAt(LocalDateTime.now())
                 .updatedAt(LocalDateTime.now())
+                .balance(BigDecimal.ZERO)
                 .build();
 
         userRepository.save(user);
+
+        //publishes an event that makes a default subscription to the new registered user
+        eventPublisher.publishEvent(new UserRegisteredEvent(user.getId()));
 
         log.info("User [{}] successfully created.", user.getUsername());
     }

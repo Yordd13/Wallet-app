@@ -4,6 +4,7 @@ import app.user.model.User;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -32,4 +33,7 @@ public class Transaction {
 
     @ManyToOne
     private User user;
+
+    @Column(nullable = false)
+    private BigDecimal amount;
 }
