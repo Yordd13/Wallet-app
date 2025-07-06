@@ -7,6 +7,7 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @AllArgsConstructor
@@ -17,7 +18,11 @@ import java.util.List;
 public class Subscription {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private SubscriptionType type;
 
     @Column(nullable = false)
