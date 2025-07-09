@@ -35,8 +35,12 @@
   <main class="content">
     <div class="balance-card">
       <p class="balance-label">Your Balance</p>
-      <p class="balance-amount" th:text="${balance} + ' USD'">0.00 USD</p>
+      <p class="balance-amount" th:text="${balance} + ' USD'"></p>
+      <form th:action="@{users/wallet/add}" th:method="POST">
+        <button type="submit" class="add-money-button">$10 Top-Up</button>
+      </form>
     </div>
+
   </main>
 </div>
 </body>

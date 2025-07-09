@@ -1,13 +1,18 @@
 package app.web;
 
+import app.security.AuthenticationDetails;
+import app.user.model.User;
 import app.user.service.UserService;
 import app.web.dto.NewRegistrationRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.math.BigDecimal;
 
 @Controller
 @RequestMapping("/")
@@ -58,8 +63,14 @@ public class IndexController {
     }
 
     @GetMapping("/home")
-    public ModelAndView getHomePage(){
+    public ModelAndView getHomePage(@AuthenticationPrincipal AuthenticationDetails authenticationDetails){
         ModelAndView modelAndView = new ModelAndView("home");
+
+        User user = userService.getUserById(authenticationDetails.getUserId());
+        BigDecimal balance = user.getBalance();
+
+        modelAndView.addObject("balance", balance);
+
         return modelAndView;
     }
 }

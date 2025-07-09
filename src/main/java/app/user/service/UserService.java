@@ -22,6 +22,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -83,5 +84,18 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new DomainException("User with this username does not exist."));
 
         return new AuthenticationDetails(user.getId(),username,user.getPassword(),user.getEmail(),user.getRole(),user.isActive());
+    }
+
+    public User getUserById(UUID userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new UsernameNotFoundException("User with this id does not exist."));
+    }
+
+    @Transactional
+    public void addMoneyToWallet(UUID userId, BigDecimal ten) {
+        User user = getUserById(userId);
+
+        user.setBalance(user.getBalance().add(ten));
+        userRepository.save(user);
     }
 }

@@ -124,4 +124,21 @@ body {
     background-color: #2a2a2a;
     color: #ff6666;
 }
+.add-money-button {
+    background-color: #00c853;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+    box-shadow: 0 0 10px rgba(0, 200, 83, 0.3);
+}
+
+.add-money-button:hover {
+    background-color: #00e676;
+}
 
