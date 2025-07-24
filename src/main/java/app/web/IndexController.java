@@ -2,6 +2,7 @@ package app.web;
 
 import app.security.AuthenticationDetails;
 import app.user.model.User;
+import app.user.model.UserRole;
 import app.user.service.UserService;
 import app.web.dto.NewRegistrationRequest;
 import jakarta.validation.Valid;
@@ -68,8 +69,10 @@ public class IndexController {
 
         User user = userService.getUserById(authenticationDetails.getUserId());
         BigDecimal balance = user.getBalance();
+        UserRole userRole = user.getRole();
 
         modelAndView.addObject("balance", balance);
+        modelAndView.addObject("userRole", userRole);
 
         return modelAndView;
     }
