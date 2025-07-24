@@ -28,9 +28,8 @@ public class SubscriptionController {
         ModelAndView modelAndView = new ModelAndView();
 
         User user = userService.getUserById(authenticationDetails.getUserId());
-        UserRole userRole = user.getRole();
 
-        modelAndView.addObject("userRole", userRole);
+        modelAndView.addObject("user", user);
 
         return modelAndView;
     }

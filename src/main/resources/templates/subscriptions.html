@@ -22,7 +22,7 @@
         <a href="#">Profile</a>
         <a href="#">Send Money</a>
         <a th:href="@{/subscriptions}">Subscriptions</a>
-        <a th:if="!${userRole.ADMIN}" href="#">Admin dashboard</a>
+        <a th:if="${user.role.equals(T(app.user.model.UserRole).ADMIN)}" href="#">Admin dashboard</a>
     </nav>
     <div class="logout-section">
         <form th:action="@{/logout}" th:method="GET">

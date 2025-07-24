@@ -68,11 +68,8 @@ public class IndexController {
         ModelAndView modelAndView = new ModelAndView("home");
 
         User user = userService.getUserById(authenticationDetails.getUserId());
-        BigDecimal balance = user.getBalance();
-        UserRole userRole = user.getRole();
 
-        modelAndView.addObject("balance", balance);
-        modelAndView.addObject("userRole", userRole);
+        modelAndView.addObject("user", user);
 
         return modelAndView;
     }

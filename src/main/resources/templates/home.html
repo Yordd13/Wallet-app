@@ -20,7 +20,7 @@
       <a href="#">Profile</a>
       <a href="#">Send Money</a>
       <a th:href="@{/subscriptions}">Subscriptions</a>
-      <a th:if="!${userRole.ADMIN}" href="#">Admin dashboard</a>
+      <a th:if="${user.role.equals(T(app.user.model.UserRole).ADMIN)}" href="#">Admin dashboard</a>
     </nav>
     <div class="logout-section">
       <form th:action="@{/logout}" th:method="GET">
@@ -35,7 +35,7 @@
   <main class="content">
     <div class="balance-card">
       <p class="balance-label">Your Balance</p>
-      <p class="balance-amount" th:text="${balance} + ' USD'"></p>
+      <p class="balance-amount" th:text="${user.balance} + ' USD'"></p>
       <form th:action="@{users/wallet/add}" th:method="POST">
         <button type="submit" class="add-money-button">$10 Top-Up</button>
       </form>
