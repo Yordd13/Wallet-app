@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Subscriptions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="/css/subscriptions.css">
+</head>
+<body>
+
+<div class="main-layout">
+
+<aside class="sidebar">
+    <div class="logo-container">
+        <a th:href="@{/home}">
+            <img src="/images/logo.png" alt="My Wallet Logo" class="logo small"/>
+        </a>
+    </div>
+    <nav class="nav-links">
+        <a href="#">History</a>
+        <a href="#">Profile</a>
+        <a href="#">Send Money</a>
+        <a th:href="@{/subscriptions}">Subscriptions</a>
+        <a href="#">Admin dashboard</a>
+    </nav>
+    <div class="logout-section">
+        <form th:action="@{/logout}" th:method="GET">
+            <button type="submit" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+            </button>
+        </form>
+    </div>
+</aside>
+
+<div class="subscriptions-container">
+    <h1 class="subscriptions-title">Choose Your Plan</h1>
+    <div class="plans">
+        <!-- FREE PLAN -->
+        <div class="plan-card">
+            <h2 class="plan-title">FREE PLAN</h2>
+            <p class="plan-price">$0 / month</p>
+            <ul class="plan-benefits">
+                <li>✔ Basic Wallet Functions</li>
+                <li>✔ Standard Security</li>
+                <li>✔ Community Support</li>
+            </ul>
+            <form action="#" method="post">
+                <input type="hidden" name="plan" value="FREE" />
+                <button type="submit" class="buy-button">Go Free</button>
+            </form>
+        </div>
+
+        <!-- SUPER PLAN -->
+        <div class="plan-card highlighted">
+            <h2 class="plan-title">SUPER PLAN</h2>
+            <p class="plan-price">$9.99 / month</p>
+            <ul class="plan-benefits">
+                <li>✔ Priority Transfers</li>
+                <li>✔ Advanced Security</li>
+                <li>✔ Email Support</li>
+            </ul>
+            <form action="" method="post">
+                <input type="hidden" name="plan" value="SUPER" />
+                <button type="submit" class="buy-button">Go Super</button>
+            </form>
+        </div>
+
+        <!-- ULTIMATE PLAN -->
+        <div class="plan-card ultimate">
+            <h2 class="plan-title">ULTIMATE PLAN</h2>
+            <p class="plan-price">$19.99 / month</p>
+            <ul class="plan-benefits">
+                <li>✔ Instant Transfers</li>
+                <li>✔ Highest Security + Insurance</li>
+                <li>✔ 24/7 VIP Support</li>
+                <li>✔ Exclusive Rewards</li>
+            </ul>
+            <form action="" method="post">
+                <input type="hidden" name="plan" value="ULTIMATE" />
+                <button type="submit" class="buy-button">Go Ultimate</button>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
