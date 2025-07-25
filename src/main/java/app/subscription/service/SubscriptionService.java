@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Service
 public class SubscriptionService {
@@ -32,11 +31,4 @@ public class SubscriptionService {
         return defaultSub;
     }
 
-    public List<Subscription> getAllSubscriptions() {
-        return subscriptionRepository.findAll();
-    }
-
-    public void saveDefaultSubscriptions(List<Subscription> subscriptions) {
-        subscriptionRepository.saveAll(subscriptions);
-    }
 }

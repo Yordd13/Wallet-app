@@ -43,12 +43,10 @@ public class UserService implements UserDetailsService {
     public void register(NewRegistrationRequest newRegistrationRequest) {
         List<String> errorMessages = new ArrayList<>();
 
-        // Check if username is taken
         if (userRepository.findByUsername(newRegistrationRequest.getUsername()).isPresent()) {
             errorMessages.add("Username \"" + newRegistrationRequest.getUsername() + "\" is already taken.");
         }
 
-        // Check if email is taken
         if (userRepository.findByEmail(newRegistrationRequest.getEmail()).isPresent()) {
             errorMessages.add("Email \"" + newRegistrationRequest.getEmail() + "\" is already taken.");
         }
@@ -71,7 +69,7 @@ public class UserService implements UserDetailsService {
 
         userRepository.save(user);
 
-        //publishes an event that makes a default subscription to the new registered user
+        //event that makes a default subscription to the new registered user
         eventPublisher.publishEvent(new UserRegisteredEvent(user.getId()));
 
         log.info("User [{}] successfully created.", user.getUsername());
