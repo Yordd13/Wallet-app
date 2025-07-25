@@ -46,10 +46,15 @@
                 <li>✔ Standard Security</li>
                 <li>✔ Community Support</li>
             </ul>
-            <form action="#" method="post">
+            <form th:if="${user.subscription.type != T(app.subscription.model.SubscriptionType).FREE}"
+                  action="#" method="post">
                 <input type="hidden" name="plan" value="FREE" />
                 <button type="submit" class="buy-button">Go Free</button>
             </form>
+                <button th:if="${user.subscription.type == T(app.subscription.model.SubscriptionType).FREE}"
+                        disabled type="submit" class="current-plan">
+                    Current Plan
+                </button>
         </div>
 
         <!-- SUPER PLAN -->
@@ -61,10 +66,15 @@
                 <li>✔ Advanced Security</li>
                 <li>✔ Email Support</li>
             </ul>
-            <form action="" method="post">
+            <form th:if="${user.subscription.type != T(app.subscription.model.SubscriptionType).SUPER}"
+                  action="#" method="post">
                 <input type="hidden" name="plan" value="SUPER" />
                 <button type="submit" class="buy-button">Go Super</button>
             </form>
+                <button th:if="${user.subscription.type == T(app.subscription.model.SubscriptionType).SUPER}"
+                        disabled type="submit" class="current-plan">
+                    Current Plan
+                </button>
         </div>
 
         <!-- ULTIMATE PLAN -->
@@ -77,10 +87,15 @@
                 <li>✔ 24/7 VIP Support</li>
                 <li>✔ Exclusive Rewards</li>
             </ul>
-            <form action="" method="post">
+            <form th:if="${user.subscription.type != T(app.subscription.model.SubscriptionType).ULTIMATE}"
+                  action="#" method="post">
                 <input type="hidden" name="plan" value="ULTIMATE" />
                 <button type="submit" class="buy-button">Go Ultimate</button>
             </form>
+                <button th:if="${user.subscription.type == T(app.subscription.model.SubscriptionType).ULTIMATE}"
+                        disabled type="submit" class="current-plan">
+                    Current Plan
+                </button>
         </div>
         </div>
     </div>

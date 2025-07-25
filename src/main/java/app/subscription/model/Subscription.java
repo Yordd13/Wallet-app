@@ -31,9 +31,6 @@ public class Subscription {
     @Column(nullable = false)
     private LocalDateTime startDateTime;
 
-    @Column(nullable = false)
-    private LocalDateTime endDateTime;
-
     @OneToOne(mappedBy = "subscription")
     private User user;
 }

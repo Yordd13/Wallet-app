@@ -27,7 +27,6 @@ public class SubscriptionService {
                 .type(SubscriptionType.FREE)
                 .price(BigDecimal.ZERO)
                 .startDateTime(LocalDateTime.now())
-                .endDateTime(LocalDateTime.now().plusDays(100))
                 .build();
         subscriptionRepository.save(defaultSub);
         return defaultSub;

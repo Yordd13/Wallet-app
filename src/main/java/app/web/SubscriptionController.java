@@ -2,7 +2,6 @@ package app.web;
 
 import app.security.AuthenticationDetails;
 import app.user.model.User;
-import app.user.model.UserRole;
 import app.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -25,7 +24,7 @@ public class SubscriptionController {
     @GetMapping
     public ModelAndView getSubscriptionsPage(@AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
 
-        ModelAndView modelAndView = new ModelAndView();
+        ModelAndView modelAndView = new ModelAndView("subscriptions");
 
         User user = userService.getUserById(authenticationDetails.getUserId());
 
